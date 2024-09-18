@@ -1,14 +1,12 @@
-﻿using DatabaseAggregator.View;
-using DatabaseAggregator.Core;
-using ViewModels;
+﻿using ViewModels;
 
 namespace DatabaseAggregator.ViewModel
 {
     public class ViewModelAggregator : ViewModelBase
     {
-        private BaseViewModel BVM { get; }
-        private SettingViewModel SVM { get; }
-        private HelpViewModel HVM { get; }
+        public BaseViewModel BVM { get; }
+        public SettingViewModel SVM { get; }
+        public HelpViewModel HVM { get; }
 
         public object? CurrentViewModel { get => Get<object>(); private set => Set(value); }
 

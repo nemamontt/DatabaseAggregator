@@ -1,6 +1,6 @@
 ﻿namespace DatabaseAggregator.ViewModel
 {
-    internal class BaseViewModel
+    public class BaseViewModel
     {
     }
 }

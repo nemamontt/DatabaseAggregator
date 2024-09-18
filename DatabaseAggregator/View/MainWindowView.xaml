@@ -4,20 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:DatabaseAggregator.ViewModel"
+        xmlns:view="clr-namespace:DatabaseAggregator.View"
         mc:Ignorable="d"
         Title="Database Aggregator 1.0"
         MinHeight="400"
         MinWidth="900"
         Height="400"
         Width="900"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        DataContext="{DynamicResource mainVM}">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:ViewModelAggregator />
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Window.Resources>
-        <ControlTemplate TargetType="Button"
+        <!--<ControlTemplate TargetType="Button"
                          x:Key="staticButton">
             <Button Grid.Column="{TemplateBinding Grid.Column}"
                     Grid.Row="{TemplateBinding Grid.Row}"          
@@ -33,9 +35,22 @@
                     </Style>
                 </Button.Resources>
             </Button>
-        </ControlTemplate>
+        </ControlTemplate>-->
+        <Style TargetType="Button"
+                         x:Key="staticButton">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="20"/>
+
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius"
+                                Value="5" />
+                </Style>
+            </Style.Resources>
+        </Style>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -54,32 +69,50 @@
                 Grid.Row="0"
                 Name="CreatButton"
                 Content="Create"
-                Template="{StaticResource staticButton}"/>
+                Style="{StaticResource staticButton}"
+                Command="{Binding SetCurrentViewModel, Mode=OneWay}"
+                CommandParameter="{Binding BVM}"/>
 
         <Button Grid.Column="1"
                 Grid.Row="0"
                 Name="SaveButton"
                 Content="💿"
                 IsEnabled="false" 
-                Template="{StaticResource staticButton}"/>
+                Style="{StaticResource staticButton}"/>
 
         <Button Grid.Column="2"
                 Grid.Row="0"
                 Content="⚙" 
-                Template="{StaticResource staticButton}"/>
+                Style="{StaticResource staticButton}"
+                Command="{Binding SetCurrentViewModel, Mode=OneWay}"
+                CommandParameter="{Binding SVM}"/>
 
 
         <Button Grid.Column="3"
                 Grid.Row="0"
                 Content="💡"
-                Template="{StaticResource staticButton}"/>
+                Style="{StaticResource staticButton}"
+                Command="{Binding SetCurrentViewModel, Mode=OneWay}"
+                CommandParameter="{Binding HVM}"/>
 
         <ContentControl Grid.Row="1"
                         Grid.Column="0"
                         Grid.ColumnSpan="4"
                         Grid.RowSpan="2"
                         Margin="15"
-                        Content="{Binding CurrentView}" />
+                        Content="{Binding CurrentViewModel}">
+            <FrameworkElement.Resources>
+                <DataTemplate DataType="{x:Type vm:SettingViewModel}">
+                    <view:SettingView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:BaseViewModel}">
+                    <view:BaseView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type vm:HelpViewModel}">
+                    <view:HelpView/>
+                </DataTemplate>
+            </FrameworkElement.Resources>
+        </ContentControl>
 
     </Grid>
 </Window>
