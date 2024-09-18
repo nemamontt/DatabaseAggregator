@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:DatabaseAggregator"
              StartupUri="View/MainWindowView.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

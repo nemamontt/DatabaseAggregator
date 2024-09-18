@@ -11,16 +11,7 @@ namespace DatabaseAggregator
         public  MainWindowView()
         {
             InitializeComponent();
-
-            CreatButton.Click += (s, e) =>
-            {
-               
-            };
-
-            SaveButton.Click += (s, e) =>
-            {
-                
-            };
+            ViewModel = new();
         }
     }
 }

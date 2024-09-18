@@ -3,14 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:DatabaseAggregator.View"
+             xmlns:vm="clr-namespace:DatabaseAggregator.ViewModel"
              mc:Ignorable="d"
              d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <vm:ViewModelAggregator />
+    </UserControl.DataContext>
+    
     <UserControl.Resources>
         <ControlTemplate x:Key="staticTextBox"
                          TargetType="TextBox">
             <TextBox Grid.Row="{TemplateBinding Grid.Row}"
                      Grid.Column="{TemplateBinding Grid.Column}"
+                     Text="{TemplateBinding Text}"
                      Margin="10">
                 <TextBox.Resources>
                     <Style TargetType="Border">
@@ -61,20 +67,23 @@
 
         <TextBox Grid.Row="0"
                  Grid.Column="2" 
-                 Template="{StaticResource staticTextBox}"/>
-
+                 Template="{StaticResource staticTextBox}"
+                 Text="{Binding UrlNvd}"/>
 
         <TextBox Grid.Row="1"
                  Grid.Column="2"
-                 Template="{StaticResource staticTextBox}" />
+                 Template="{StaticResource staticTextBox}"
+                 Text="{Binding ApiKeyNvd}" />
 
         <TextBox Grid.Row="2"
                  Grid.Column="2"
-                 Template="{StaticResource staticTextBox}" />
+                 Template="{StaticResource staticTextBox}"
+                 Text="{Binding UrlFstec}"/>
 
         <TextBox Grid.Row="3"
                  Grid.Column="2"
-                 Template="{StaticResource staticTextBox}" />
+                 Template="{StaticResource staticTextBox}"
+                 Text="{Binding UrlJvn}" />
 
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
@@ -111,7 +120,8 @@
                 Width="auto"
                 Height="auto"
                 Margin="5"
-                Cursor="Hand">
+                Cursor="Hand"
+                Command="{Binding ButtonSettingViewCommand}">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius"

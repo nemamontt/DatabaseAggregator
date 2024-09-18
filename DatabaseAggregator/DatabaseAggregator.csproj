@@ -6,11 +6,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>AggregatorIco.ico</ApplicationIcon>
+    <ApplicationIcon>Pictures\AggregatorIco.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="AggregatorIco.ico" />
+    <Content Include="Pictures\AggregatorIco.ico" />
   </ItemGroup>
 
   <ItemGroup>

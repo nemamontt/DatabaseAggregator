@@ -14,7 +14,7 @@ using System.Text.Json;
 
 namespace DatabaseAggregator.Model
 {
-    public class Model 
+    public class Model
     {
         private readonly HttpClient httpClient;
         private ObservableCollection<Database> Databases { get; set; } 
@@ -234,7 +234,7 @@ namespace DatabaseAggregator.Model
 
             }
         }
-        public void SaveFile()
+        public void SaveFile(object objectSerializations)
         {
             SaveFileDialog saveFileDialog = new() { Filter = "Json files (*.json)|*.json|All files (*.*)|*.*" };
             if (saveFileDialog.ShowDialog() is true)
@@ -244,7 +244,7 @@ namespace DatabaseAggregator.Model
                     WriteIndented = true,
                     Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 };
-                var json = JsonSerializer.Serialize(Databases, options);
+                var json = JsonSerializer.Serialize(objectSerializations, options);
                 File.WriteAllText(saveFileDialog.FileName, json);
             }
         }

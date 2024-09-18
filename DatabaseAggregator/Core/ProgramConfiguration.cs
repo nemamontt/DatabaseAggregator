@@ -2,10 +2,18 @@
 {
     class ProgramConfiguration
     {
-        private string url_FSTEK {  get; set; }
-        private string url_NVD { get; set; }
-        private string apiKey_NVD { get; set; }
-        private string url_JVN { get; set; }
-        private string settingText {  get; set; }
+        private string UrlFsteс {  get; set; }
+        private string UrlNvd { get; set; }
+        private string ApiKeyNvd { get; set; }
+        private string UrlJvn { get; set; }
+        private string SettingText { get; set; }
+
+        public ProgramConfiguration(string urlFsteс, string urlNvd, string apiKeyNvd, string urlJvn)
+        {
+            UrlFsteс = urlFsteс;
+            UrlNvd = urlNvd;
+            ApiKeyNvd = apiKeyNvd;
+            UrlJvn = urlJvn;
+        }
     }
 }

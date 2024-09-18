@@ -7,6 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="500">
 
+    <UserControl.DataContext>
+        <vm:ViewModelAggregator />
+    </UserControl.DataContext>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -16,7 +19,7 @@
         
         <ProgressBar Grid.Row="0"
                      Margin="5"
-                     IsIndeterminate="{Binding beginWork }">
+                     IsIndeterminate="{Binding BeginWork}">
             <ProgressBar.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius"
@@ -29,6 +32,6 @@
                    Grid.Row="1"
                    Margin="5"
                    Background="Gray"
-                   Text="{Binding progressText}" />
+                   Text="{Binding ProgressText}" />
     </Grid>
 </UserControl>

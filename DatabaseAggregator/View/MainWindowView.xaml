@@ -10,7 +10,8 @@
         MinWidth="900"
         Height="400"
         Width="900"
-        ResizeMode="CanResizeWithGrip">
+        ResizeMode="CanResizeWithGrip"
+        Cursor="Hand">
 
     <Window.DataContext>
         <vm:ViewModelAggregator />
@@ -23,6 +24,7 @@
                     Grid.Row="{TemplateBinding Grid.Row}"          
                     Content="{TemplateBinding Content}"
                     IsEnabled="{TemplateBinding IsEnabled}"
+                    Command="{TemplateBinding Command}"
                     FontSize="30"
                     Cursor="Hand"
                     Margin="20">
@@ -54,7 +56,8 @@
                 Grid.Row="0"
                 Name="CreatButton"
                 Content="Create"
-                Template="{StaticResource staticButton}"/>
+                Template="{StaticResource staticButton}"
+                Command="{Binding BaseViewCommand}"/>
 
         <Button Grid.Column="1"
                 Grid.Row="0"
@@ -65,14 +68,18 @@
 
         <Button Grid.Column="2"
                 Grid.Row="0"
+                Name="SettingButton"
                 Content="⚙" 
-                Template="{StaticResource staticButton}"/>
+                Template="{StaticResource staticButton}"
+                Command="{Binding SettingViewCommand}"/>
 
 
         <Button Grid.Column="3"
                 Grid.Row="0"
+                Name="HeplButton"
                 Content="💡"
-                Template="{StaticResource staticButton}"/>
+                Template="{StaticResource staticButton}"
+                Command="{Binding HelpViewCommand}"/>
 
         <ContentControl Grid.Row="1"
                         Grid.Column="0"
