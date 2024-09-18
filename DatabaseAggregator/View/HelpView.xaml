@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="ТЕКСТ ОПИСАНИЯ" 
+        <TextBlock Text="{Binding HelpText}" 
                    FontSize="20"/>
     </Grid>
 </UserControl>

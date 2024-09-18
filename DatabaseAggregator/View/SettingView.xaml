@@ -6,11 +6,7 @@
              xmlns:vm="clr-namespace:DatabaseAggregator.ViewModel"
              mc:Ignorable="d"
              d:DesignWidth="800">
-
-    <UserControl.DataContext>
-        <vm:ViewModelAggregator />
-    </UserControl.DataContext>
-    
+ 
     <UserControl.Resources>
         <ControlTemplate x:Key="staticTextBox"
                          TargetType="TextBox">

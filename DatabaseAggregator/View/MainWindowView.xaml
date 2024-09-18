@@ -50,6 +50,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Button Grid.Column="0"
@@ -57,14 +58,15 @@
                 Name="CreatButton"
                 Content="Create"
                 Template="{StaticResource staticButton}"
-                Command="{Binding BaseViewCommand}"/>
+                Command="{Binding CrateViewCommand}"/>
 
         <Button Grid.Column="1"
                 Grid.Row="0"
                 Name="SaveButton"
                 Content="💿"
                 IsEnabled="false" 
-                Template="{StaticResource staticButton}"/>
+                Template="{StaticResource staticButton}"
+                Command="{Binding SaveViewCommand}"/>
 
         <Button Grid.Column="2"
                 Grid.Row="0"
@@ -81,9 +83,16 @@
                 Template="{StaticResource staticButton}"
                 Command="{Binding HelpViewCommand}"/>
 
+        <Button Grid.Column="4"
+                Grid.Row="0"
+                Name="UploadView"
+                Content="📄"
+                Template="{StaticResource staticButton}"
+                Command="{Binding UploadViewCommand}" />
+
         <ContentControl Grid.Row="1"
                         Grid.Column="0"
-                        Grid.ColumnSpan="4"
+                        Grid.ColumnSpan="5"
                         Grid.RowSpan="2"
                         Margin="15"
                         Content="{Binding CurrentView}" />
