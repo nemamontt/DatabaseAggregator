@@ -1,16 +1,12 @@
 ﻿using Aspose.Cells;
+using DatabaseAggregator.Core;
 using HtmlAgilityPack;
-using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Text.Encodings.Web;
-using System.Text.Json;
 
 namespace DatabaseAggregator.Model
 {
@@ -18,11 +14,7 @@ namespace DatabaseAggregator.Model
     {
         private readonly HttpClient httpClient;
         private ObservableCollection<Database> Databases { get; set; } 
-        private readonly string puthResource = Path.Combine(Environment.CurrentDirectory, "Resource");
-        private static readonly string API_KEY = "";
-        private const string HTTP_REQUEST_FSTEC = "https://bdu.fstec.ru/files/documents/vullist.xlsx";
-        private const string HTTP_REQUEST_NVD = "https://services.nvd.nist.gov/rest/json/cves/2.0/?resultsPerPage=1000&startIndex=0";
-        private const string HTTP_REQUEST_JVN = "https://jvndb.jvn.jp/search/index.php?mode=_vulnerability_search_IA_VulnSearch&lang=en&keyword=&dateLastPublishedFromYear=2023&dateLastPublishedFromMonth=11&datePublicFromYear=2023&datePublicFromMonth=11&skey=d6";
+        private  ProgramConfiguration ProgConfig { get; set; }
 
         public Model()
         {
@@ -216,24 +208,12 @@ namespace DatabaseAggregator.Model
             else
                 return "Непредвиденная ошибка";
         }
-        public async Task CreatDatabase()
+        public ObservableCollection<Database> CreatDatabase(ProgramConfiguration progConfig)
         {
-            try
-            {
-                Databases = new ObservableCollection<Database>()
-            {
-                new("FSTEC", await UpdateByInstallationLink()),
-                new("NVD",  await UpdateByApiRequest()),
-                new("JVN",  UpdateByPageParsing())
-            };
-            }
-            catch (Exception ex)
-            {
-
-            }
+            return null;
         }
     }
-    public class Vulnerability : INotifyPropertyChanged
+    public class Vulnerability : ObservableObject
     {
         private string identifier;
         public string Identifier
@@ -255,8 +235,6 @@ namespace DatabaseAggregator.Model
                 OnPropertyChanged();
             }
         }
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string name = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
     public class Database
     {

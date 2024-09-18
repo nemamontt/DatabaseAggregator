@@ -1,6 +1,6 @@
 ﻿namespace DatabaseAggregator.Core
 {
-    class ProgramConfiguration
+    public class ProgramConfiguration
     {
         private string UrlFsteс {  get; set; }
         private string UrlNvd { get; set; }

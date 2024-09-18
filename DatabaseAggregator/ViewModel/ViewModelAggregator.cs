@@ -7,51 +7,22 @@ using System.IO;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Windows;
-using System.Windows.Shapes;
 
 namespace DatabaseAggregator.ViewModel
 {
     class ViewModelAggregator : ObservableObject
     {
         private Model.Model model;
-
         private BaseView BV { get; set; }
         private SettingView SV { get; set; }
         private HelpView HV { get; set; }
+       //private UploadView {get; set;}
 
         public RelayCommand HelpViewCommand { get; set; }
         public RelayCommand SettingViewCommand { get; set; }
         public RelayCommand CrateViewCommand { get; set; }
-        public RelayCommand SettingViewButtonCommand { get; set; }
         public RelayCommand SaveViewCommand { get; set; }
-
-        private string urlNvd;
-        public string UrlNvd
-        {
-            get { return urlNvd; }
-            set { urlNvd = value; }
-        }
-
-        private string urlFstek;
-        public string UrlFstek
-        {
-            get { return urlFstek; }
-            set { urlFstek = value; }
-        }
-
-        private string urlJvn;
-        public string UrlJvn
-        {
-            get { return urlJvn; }
-            set { urlJvn = value; }
-        }
-
-        private string apiKeyNvd;
-        public string ApiKeyNvd
-        {
-            get { return apiKeyNvd; }
-            set { apiKeyNvd = value; }
-        }
+        public RelayCommand UploadViewCommand { get; set; }
 
         private object currentView;
         public object CurrentView
@@ -90,13 +61,6 @@ namespace DatabaseAggregator.ViewModel
             }
         }
 
-        private string helpText;
-        public string HelpText
-        {
-            get { return helpText; }
-            set { helpText = value; }
-        }
-
         private ProgramConfiguration progConfig;
         public ProgramConfiguration ProgConfig
         {
@@ -111,7 +75,7 @@ namespace DatabaseAggregator.ViewModel
             set { database = value; }
         }
 
-        private readonly string pathToResources = System.IO.Path.Combine(Environment.CurrentDirectory, "Resource");
+        private readonly string pathToResources = Path.Combine(Environment.CurrentDirectory, "Resource");
 
         public ViewModelAggregator()
         {
@@ -136,22 +100,20 @@ namespace DatabaseAggregator.ViewModel
                 CreatFile();
             });
 
-            /*         
+            SettingViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = SV;
+            });
 
-                        HelpViewCommand = new RelayCommand(o =>
-                          {
-                              CurrentView = HV;
-                          });
+            HelpViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = HV;
+            });
 
-                        SettingViewCommand = new RelayCommand(o =>
-                        {
-                            CurrentView = SV;
-                        });
-                        SettingViewButtonCommand = new RelayCommand(o =>
-                        {
-                            ProgramConfiguration progConfig = new(UrlFstek, UrlNvd, ApiKeyNvd, UrlJvn);
-                            model.SaveFile(progConfig);
-                        });*/
+            UploadViewCommand = new RelayCommand(o =>
+            {
+                //CurrentView =  UV;
+            });
         }
 
         public void ImportFile(bool selectionWindow) 
@@ -181,7 +143,6 @@ namespace DatabaseAggregator.ViewModel
                 }               
             }        
         }
-
         public void CreatFile()
         {
             if(ProgConfig is null)
@@ -190,8 +151,8 @@ namespace DatabaseAggregator.ViewModel
             }
             else
             {
-                //Database = model.CreatDatabase();
-            }           
+                Database = model.CreatDatabase(ProgConfig);
+            }
         }
         public void SaveFile(object objectSerializations)
         {
