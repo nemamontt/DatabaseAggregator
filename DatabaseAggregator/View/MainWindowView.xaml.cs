@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using WPFCustomMessageBox;
 using DatabaseAggregator.ViewModel;
 
 namespace DatabaseAggregator
