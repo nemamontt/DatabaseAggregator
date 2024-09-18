@@ -75,7 +75,6 @@
                 Template="{StaticResource staticButton}"
                 Command="{Binding SettingViewCommand}"/>
 
-
         <Button Grid.Column="3"
                 Grid.Row="0"
                 Name="HeplButton"

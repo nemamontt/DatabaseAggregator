@@ -19,12 +19,10 @@ namespace DatabaseAggregator.Model
         private readonly HttpClient httpClient;
         private ObservableCollection<Database> Databases { get; set; } 
         private readonly string puthResource = Path.Combine(Environment.CurrentDirectory, "Resource");
-        private static readonly string API_KEY = "6cbe6e35-f52e-410f-a627-444352adf9c3";
+        private static readonly string API_KEY = "";
         private const string HTTP_REQUEST_FSTEC = "https://bdu.fstec.ru/files/documents/vullist.xlsx";
         private const string HTTP_REQUEST_NVD = "https://services.nvd.nist.gov/rest/json/cves/2.0/?resultsPerPage=1000&startIndex=0";
         private const string HTTP_REQUEST_JVN = "https://jvndb.jvn.jp/search/index.php?mode=_vulnerability_search_IA_VulnSearch&lang=en&keyword=&dateLastPublishedFromYear=2023&dateLastPublishedFromMonth=11&datePublicFromYear=2023&datePublicFromMonth=11&skey=d6";
-
-        
 
         public Model()
         {
@@ -232,20 +230,6 @@ namespace DatabaseAggregator.Model
             catch (Exception ex)
             {
 
-            }
-        }
-        public void SaveFile(object objectSerializations)
-        {
-            SaveFileDialog saveFileDialog = new() { Filter = "Json files (*.json)|*.json|All files (*.*)|*.*" };
-            if (saveFileDialog.ShowDialog() is true)
-            {
-                var options = new JsonSerializerOptions
-                {
-                    WriteIndented = true,
-                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-                };
-                var json = JsonSerializer.Serialize(objectSerializations, options);
-                File.WriteAllText(saveFileDialog.FileName, json);
             }
         }
     }
